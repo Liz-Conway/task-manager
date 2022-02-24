@@ -7,6 +7,6 @@ touch _animations.sass _base.sass _typography.sass _utilities.sass
 cd ../components/
 touch _button.sass
 cd ../layout/
-touch _grid.sass _header.sass 
+touch _grid.sass _header.sass _footer.sass 
 cd ../pages/
 touch _home.sass

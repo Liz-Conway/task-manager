@@ -6,17 +6,64 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Task Manager</title>
 	
+    <!-- Font Awesome (put BEFORE Materialize CDN link)-->
+    <link rel="stylesheet" 
+    	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
+    	integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" 
+    	crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<!-- Compiled and minified Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 
-	<h1>Hello World!</h1>
+	<header>
+		<!-- Top navbar -->
+		<nav class="light-blue darken-1">
+		    <div class="nav-wrapper">
+		      <a href="{{ url_for('home') }}" class="brand-logo">Task Manager</a>
+		      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+		      <ul class="right hide-on-med-and-down">
+		      	<!-- Need to tell Flask the name of the function to call in the Controller -->
+		        <li><a href="{{ url_for('home') }}">Home</a></li>
+		        <li><a href="">New Task</a></li>
+		        <li><a href="">Categories</a></li>
+		      </ul>
+		    </div>
+	  </nav>
+		
+	  <!-- Mobile sidenav -->
+	  <ul class="sidenav" id="mobile-demo">
+	    <li><a href="{{ url_for('home') }}">Home</a></li>
+	    <li><a href="">New Task</a></li>
+        <li><a href="">Categories</a></li>
+	  </ul>
+	</header>
 	
+	<!-- Materialize element 'container' -->
+	<main class="container">
+		{% block content %}
+		{% endblock %}
+	</main>
+	
+	<!-- Materialize Footer -->
+	<footer class="page-footer blue darken-3">
+        <div class="footer-copyright">
+            <div class="container">
+            	For educational purposes only
+            	<a class="white-text right" href="https://codeinstitute.net" target="_blank">&copy; Waycon Technologies</a>
+            </div>
+        </div>
+     </footer>
             
+	<!-- jQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" 
+		integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" 
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<!-- Compiled and minified Materialize JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 </body>
