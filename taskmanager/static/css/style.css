@@ -1,5 +1,5 @@
-/* line 1, ../../../SASS/base/_base.sass */
 body {
+  /*Set up body for sticky footer */
   min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -10,7 +10,6 @@ body {
           flex-direction: column;
 }
 
-/* line 1, ../../../SASS/layout/_footer.sass */
 footer {
   margin-top: auto;
 }

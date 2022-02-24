@@ -15,4 +15,4 @@ from taskmanager.models import Task, Category
 # Target a function called 'home()' which returns the rendered template of "base.html"
 @app.route("/")
 def home():
-    return render_template("base.html")
+    return render_template("tasks.html")

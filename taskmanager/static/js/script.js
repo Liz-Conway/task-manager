@@ -1,12 +1,8 @@
 $(
-	function() {
-	    $('.sidenav').sidenav();
-	  }
-
-	  setMinBodyHeight();
+	start
 );
 
-function setMinBodyHeight() {
-	$("body").css
+function start() {
+    $('.sidenav').sidenav();
 }
 
