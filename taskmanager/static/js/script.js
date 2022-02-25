@@ -11,5 +11,6 @@ function start() {
      	i18n: {done: "Select"}
      });
      $('select').formSelect();
+     $('.collapsible').collapsible();
 }
 
