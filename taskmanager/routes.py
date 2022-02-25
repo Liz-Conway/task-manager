@@ -125,3 +125,15 @@ def edit_task(task_id):
         return redirect(url_for("home"))
     
     return render_template("edit_task.html", task=taskObj, categories=categoriesList)    # GET method
+
+@app.route("/delete_task/<int:task_id>")
+def delete_task(task_id):
+    '''get_or_404() -  Queries the database and attempts to find the specified record 
+    using the data provided, and if no match is found, it will trigger a 404 error page.'''
+    taskObj = Task.query.get_or_404(task_id)
+    
+    db.session.delete(taskObj)
+    db.session.commit()
+    
+    return redirect(url_for("home"))
+
