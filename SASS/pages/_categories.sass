@@ -1,0 +1,16 @@
+.categoryCards
+	display: flex
+	flex-wrap: wrap
+	flex-direction: row
+	& .card
+		width: 100%
+		margin-left: auto
+		margin-right: auto
+		text-align: center
+		@include respond(tabletPortrait)
+			width: 45%
+		@include respond(desktop)
+			width: 23%
+	& .card-action
+		display: flex
+		justify-content: space-between

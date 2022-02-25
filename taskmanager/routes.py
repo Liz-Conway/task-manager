@@ -3,13 +3,14 @@ Created on 21 Feb 2022
 
 @author: fintan
 '''
-from flask import render_template
+from flask import render_template, request, redirect, url_for
 from taskmanager import app, db
 
 # Need to manually create the database
 # But the tables will be automatically generated
 # Need to import model classes in order to generate the db schema in Postgres
 from taskmanager.models import Task, Category
+from _blueman import page_timeout
 
 # Simple route using root directory
 # Target a function called 'home()' which returns the rendered template of "base.html"
@@ -19,6 +20,15 @@ def home():
 
 @app.route("/categories")
 def categories():
+    # Retrieve all categories from the DB
+    # categoriesVar = Category.query.all()   # Automatically sorts by the primary key
+    # The next line returns a Cursor object
+    # categoriesVar = Category.query.order_by(Category.category_name).all()
+    
+    # Store the categories as an ordinary array/list
+    categoriesVar = list(Category.query.order_by(Category.category_name).all())
+    
+    # Pass the categories from the DB into the HTML template
     return render_template("categories.html", categories = categoriesVar)
 
 '''Need to add GET and POST methods since we will be
