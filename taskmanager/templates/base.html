@@ -27,7 +27,7 @@
 		      <ul class="right hide-on-med-and-down">
 		      	<!-- Need to tell Flask the name of the function to call in the Controller -->
 		        <li><a href="{{ url_for('home') }}">Home</a></li>
-		        <li><a href="">New Task</a></li>
+		        <li><a href="{{ url_for('add_task') }}">New Task</a></li>
 		        <li><a href="{{ url_for('categories') }}">Categories</a></li>
 		      </ul>
 		    </div>
@@ -36,7 +36,7 @@
 	  <!-- Mobile sidenav -->
 	  <ul class="sidenav" id="mobile-demo">
 	    <li><a href="{{ url_for('home') }}">Home</a></li>
-	    <li><a href="">New Task</a></li>
+	    <li><a href="{{ url_for('add_task') }}">New Task</a></li>
         <li><a href="{{ url_for('categories') }}">Categories</a></li>
 	  </ul>
 	</header>

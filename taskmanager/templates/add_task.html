@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h3 class="light-blue-text text-darken-4 center-align">Add Task</h3>
+	
+    <div class="card-panel grey lighten-5">
+	    <form class="addTaskForm" method="POST" action="{{ url_for('add_task') }}">
+	        <!-- Task name -->
+	        <div class="input-field addTaskInput">
+		          <!-- Font Awesome - use 'prefix' on an icon to show it before the input box -->
+		          <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
+		          <input id="task_name" name="task_name" type="text" class="validate"
+		          	required minlength="5" maxlength="50">
+		          <label for="task_name">Task Name</label>
+	        </div>
+	        <!-- Task description -->
+	        <div class="input-field addTaskInput">
+		          <!-- Font Awesome - use 'prefix' on an icon to show it before the input box -->
+		          <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
+		          <textarea id="task_description" name="task_description" type="text" 
+		          class="validate materialize-textarea" required minlength="5" maxlength="200"></textarea>
+		          <label for="task_description">Task Description</label>
+	        </div>
+	        <!-- Due Date -->
+	        <div class="input-field addTaskInput">
+		          <!-- Font Awesome - use 'prefix' on an icon to show it before the input box -->
+		          <i class="fas fa-calendar-alt prefix light-blue-text text-darken-4"></i>
+		          <input id="due_date" name="due_date" type="text" class="datepicker validate" required>
+		          <label for="due_date">Due Date</label>
+	        </div>
+	        <!-- Is Urgent -->
+	        <div class="input-field addTaskInput">
+				<div class="switch">
+					<!-- Font Awesome - use 'prefix' on an icon to show it before the input box -->
+					<i class="fas fa-exclamation-circle prefix light-blue-text text-darken-4"></i>
+					<label for="is_urgent"> 
+						<input id="is_urgent" name="is_urgent" type="checkbox"> 
+						<span class="lever"></span>
+						Is Urgent
+					</label>
+				</div>
+			</div>
+	        <!-- Category -->
+	        <div class="input-field addTaskInput">
+		          <!-- Font Awesome - use 'prefix' on an icon to show it before the input box -->
+		          <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>
+		          <select id="category_id" name="category_id" class="validate" required>
+		          		<option value="" disabled selected>Choose a Category</option>
+		          		{% for category in categories %}
+		          			<option value="{{ category.id }}">{{ category.category_name }}</option>
+		          		{% endfor %}
+		          </select>
+		          <label for="category_id">Category</label>
+	        </div>
+
+
+	        <!-- Submit button -->
+	        <div>
+	        	<button class="btn-large light-blue darken-1" type="submit">
+	        		Add Task <i class="fas fa-plus-square"></i>
+	        	</button>
+	        </div>
+	    </form>
+    </div>
+{% endblock %}

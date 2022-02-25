@@ -10,7 +10,7 @@ from taskmanager import app, db
 # But the tables will be automatically generated
 # Need to import model classes in order to generate the db schema in Postgres
 from taskmanager.models import Task, Category
-from _blueman import page_timeout
+
 
 # Simple route using root directory
 # Target a function called 'home()' which returns the rendered template of "base.html"
@@ -78,3 +78,27 @@ def delete_category(category_id):
     db.session.commit()
     
     return redirect(url_for("categories"))
+
+@app.route("/add_task", methods=["GET", "POST"])
+def add_task():
+    # Each task needs the user to select a category
+    # So retrieve a list of categories from the database
+    categoriesList = list(Category.query.order_by(Category.category_name).all())
+    if request.method == "POST":
+        # Create a Task ORM object, setting the name to the name added in the form
+        taskObj = Task(
+            task_name = request.form.get("task_name"),
+            task_description = request.form.get("task_description"),
+            is_urgent = bool(True if request.form.get("is_urgent") else False),
+            due_date = request.form.get("due_date"),
+            category_id = request.form.get("category_id")
+        )
+        # Add the form data to the database
+        db.session.add(taskObj)
+        db.session.commit()
+        '''Run the home() method to show the Home page
+        after submitting the new task'''
+        return redirect(url_for("home"))
+    
+    return render_template("add_task.html", categories=categoriesList)
+

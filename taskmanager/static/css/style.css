@@ -14,7 +14,7 @@ footer {
   margin-top: auto;
 }
 
-.addCategory {
+.addCategory, .addTask {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -23,7 +23,7 @@ footer {
           justify-content: center;
 }
 
-.addCategoryForm {
+.addCategoryForm, .addTaskForm {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -35,8 +35,12 @@ footer {
       -ms-flex-direction: column;
           flex-direction: column;
 }
-.addCategoryInput {
+.addCategoryInput, .addTaskInput {
   width: 100%;
+}
+
+.addTaskInput {
+  margin-bottom: 30px;
 }
 
 .categoryCards {
