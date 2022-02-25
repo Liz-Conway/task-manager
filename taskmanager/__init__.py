@@ -10,6 +10,7 @@ allowing us to use our own imports, as well as any standard imports.
 @author: fintan
 '''
 import os
+import re
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 '''
@@ -33,7 +34,13 @@ if os.environ.get("DEVELOPMENT") == True:
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URL")
 # Otherwise we are running the application in Heroku
 else:
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+    # Heroku gives us an improper database URI
+    # It gives 'postgres://' instead of 'postgresql://'
+    uri = os.environ.get("DATABASE_URL")
+    if uri.startswith("postgres://"):
+        uri = uri.replace("postgres://", "postgresql://", 1)
+    #app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+    app.config["SQLALCHEMY_DATABASE_URI"] = uri
 
 # Create an instance of the imported SQLAlchemy class
 # Set to the instance of our Flask 'app'

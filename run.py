@@ -8,7 +8,7 @@ At the root of our application - not part of the taskmanager package
 '''
 import os   # Since need to use environment variables
 from taskmanager import app
-from email.mime import application
+
 
 # Tell our app how and where to run the application
 # Check that the 'name' class is equal to the default 'main' string, wrapped in double underscores.
