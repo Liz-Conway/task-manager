@@ -28,7 +28,12 @@ app = Flask(__name__)
 
 # Specify app configuration variables
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URL")
+# If we are working on our local PC
+if os.environ.get("DEVELOPMENT") == True:
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URL")
+# Otherwise we are running the application in Heroku
+else:
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
 
 # Create an instance of the imported SQLAlchemy class
 # Set to the instance of our Flask 'app'
