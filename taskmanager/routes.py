@@ -61,6 +61,20 @@ def edit_category(category_id):
     if request.method == "POST":
         categoryObj.category_name = request.form.get("category_name")
         db.session.commit()
-        return redirect("/categories")
+        return redirect(url_for("categories"))
     
     return render_template("edit_category.html", category=categoryObj)    # GET method
+
+'''Passing parameters into our Controller functions
+   must be wrapped in angle brackets and cast to the appropriate datatype
+   We must also pass it as a parameter to the method'''
+@app.route("/delete_category/<int:category_id>")
+def delete_category(category_id):
+    '''get_or_404() -  Queries the database and attempts to find the specified record 
+    using the data provided, and if no match is found, it will trigger a 404 error page.'''
+    categoryObj = Category.query.get_or_404(category_id)
+    
+    db.session.delete(categoryObj)
+    db.session.commit()
+    
+    return redirect(url_for("categories"))
