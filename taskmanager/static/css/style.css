@@ -1,3 +1,9 @@
+.error {
+  font-size: 150%;
+  font-weight: 700;
+  color: red;
+}
+
 body {
   /*Set up body for sticky footer */
   min-height: 100vh;
