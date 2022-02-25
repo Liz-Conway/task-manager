@@ -104,3 +104,24 @@ def add_task():
     
     return render_template("add_task.html", categories=categoriesList)
 
+@app.route("/edit_task/<int:task_id>", methods=["GET", "POST"])
+def edit_task(task_id):
+    '''get_or_404() -  Queries the database and attempts to find the specified record 
+    using the data provided, and if no match is found, it will trigger a 404 error page.'''
+    taskObj = Task.query.get_or_404(task_id)
+    
+    # Each task needs the user to select a category
+    # So retrieve a list of categories from the database
+    categoriesList = list(Category.query.order_by(Category.category_name).all())
+    
+    if request.method == "POST":
+        taskObj.task_name = request.form.get("task_name")
+        taskObj.task_description = request.form.get("task_description")
+        taskObj.is_urgent = bool(True if request.form.get("is_urgent") else False)
+        taskObj.due_date = request.form.get("due_date")
+        taskObj.category_id = request.form.get("category_id")
+        
+        db.session.commit()
+        return redirect(url_for("home"))
+    
+    return render_template("edit_task.html", task=taskObj, categories=categoriesList)    # GET method
